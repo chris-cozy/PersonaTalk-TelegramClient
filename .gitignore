@@ -1,0 +1,28 @@
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+venv.bak/
+*.venv/
+*.env/
+.env.bak/
+env/
+*.env.bak/
+ENV/
+env.bak/
+venv/
+ENV/
+
+# Editor/IDE specific files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
