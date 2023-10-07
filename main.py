@@ -1,5 +1,6 @@
 import logging
 import telebot
+from telebot import types
 import requests
 from config import BOT_TOKEN, LOGIN_ENDPOINT, REGISTER_ENDPOINT, CHAT_ENDPOINT
 from user_state import UserState
@@ -53,8 +54,15 @@ def handle_user_input(message):
         username, password = user_input.split()
         login_success = perform_login(user_state, username, password)
         if login_success:
+            try:
+                for i in range(5):
+                    # Adjust message_id accordingly
+                    bot.delete_message(chat_id, message.message_id - (i + 1))
+            except Exception as e:
+                print(f"Error deleting messages: {e}")
+
             bot.send_message(
-                chat_id, "Login successful! You can now start chatting.")
+                chat_id, "Login successful! Send Jasmine a message to start chatting.")
         else:
             bot.send_message(chat_id, "Invalid credentials. Please try again.")
     elif user_state.state == 'register':
